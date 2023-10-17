@@ -56,7 +56,7 @@ function containsUpperCase(str) {
 }
 
 function containsNonAlphanumeric(str) {
-  const nonAlpha = '@#*(`?!`" ';
+  const nonAlpha = '!@#$%^&*()_+-=[]{}|;:,.<>?`" ';
   for(let char of str){
         if(nonAlpha.includes(char)){
           return true;
@@ -91,7 +91,7 @@ function isValidPassword(str) {
   let passwordStr = ''
   const strU = str.toUpperCase();
   const strL = str.toLowerCase();
-  const nonAlpha = '#*(`?!`';
+  const nonAlpha = '!@#$%^&*()_+-=[]{}|;:,.<>?`';
   const digits = '0123456789';
   
    if((str === strU || str === strL) || str.includes(" ")){
@@ -104,7 +104,15 @@ function isValidPassword(str) {
    }
 }
 
-function onlyPunchy() {
+function onlyPunchy(str) {
+  let puncArr = [];
+  return (str += '!').slice(0, (str.indexOf('!') + 1));
+    
+    } for(let title of str){
+      if(title.length < 15){
+        puncArr.push(title);
+  }
+  return puncArr;
 }
 
 
