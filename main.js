@@ -71,12 +71,37 @@ function containsSpace(str) {
 }
 
 function digits(num) {
+  const results = [];
+  // if(char >=0){
+    let numStr = num.toString().split('');
+    for(let char of numStr){
+      results.push(char)
+      } 
 }
 
-function truncate() {
+function truncate(str) {
+  if(str.length >= 15){
+    return str.slice(0, 8) + "...";
+  } else {
+    return str;
+  }
 }
 
-function isValidPassword() {
+function isValidPassword(str) {
+  let passwordStr = ''
+  const strU = str.toUpperCase();
+  const strL = str.toLowerCase();
+  const nonAlpha = '#*(`?!`';
+  const digits = '0123456789';
+  
+   if((str === strU || str === strL) || str.includes(" ")){
+     return false;
+     } else for(let char of str){
+     if(digits.includes(char) && nonAlpha.includes(char)){
+      passwordStr += char;
+      }
+     return true
+   }
 }
 
 function onlyPunchy() {
