@@ -1,9 +1,5 @@
 function isEvenlyDivisible(num1, num2) {
-  if (num1 % num2 === 0) {
-    return true;
-  } else {
-    return false;
-  }
+  return num1 % num2 === 0
 }
 
 function halfSquare(num) {
@@ -11,22 +7,23 @@ function halfSquare(num) {
 }
 
 function isLong(str) {
-  if (str.length >= 15) {
-    return true;
-  } else {
-    return false;
-  }
+  return str.length >= 15
 }
 
+//my answer was
+// function exclaim(str) {
+//  if(!str.endsWith("!")) {
+//   return str + "!";
+// } else if( str.endsWith ("!!!!!!")){
+//    return str.replace("!!!!!!", "!")
+// } else if( str.endsWith ("!!")){
+//   return str.replace("!!", "!")
+// }
+// return str;
+// }
+//or
 function exclaim(str) {
- if(!str.endsWith("!")) {
-  return str + "!";
-} else if( str.endsWith ("!!!!!!")){
-   return str.replace("!!!!!!", "!")
-} else if( str.endsWith ("!!")){
-  return str.replace("!!", "!")
-}
-return str;
+  return str.split('!')[0] + "!"
 }
 
 
@@ -35,16 +32,14 @@ function countWords(str) {
 }
 
 function containsDigit(str) {
-  // const digits = '0123456789';
-  // for(let char of str){
-  //   if(digits.includes(char)){
-  //     return true;
-  //   } else{
-  //     return false;
-  //   }
-  // }
-
-  return /\d/.test(str);
+  const digits = '0123456789';
+  for(let char of str){
+    if(digits.includes(char)){
+      return true;
+    } 
+  }
+  return false
+    // return /\d/.test(str);
 }
 
 function containsLowerCase(str) {
@@ -56,14 +51,15 @@ function containsUpperCase(str) {
 }
 
 function containsNonAlphanumeric(str) {
-  const nonAlpha = '!@#$%^&*()_+-=[]{}|;:,.<>?`" ';
-  for(let char of str){
-        if(nonAlpha.includes(char)){
-          return true;
-        } else{
-          return false;
-        }
-      }
+  const nonAlpha = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ';
+  for (let char of str) {
+    if(validator.includes(char.toLowercase())) {
+      continue
+    }else{
+      return true
+    }
+  }
+  return false
 }
 
 function containsSpace(str) {
@@ -71,12 +67,14 @@ function containsSpace(str) {
 }
 
 function digits(num) {
+  let numStr = num.toString()
   const results = [];
-  // if(char >=0){
-    let numStr = num.toString().split('');
-    for(let char of numStr){
-      results.push(char)
-      } 
+  for(let char of numStr){
+    if(!('.-'.includes(char))){
+      results.push(parseInt(char))
+    }
+  }
+  return results    
 }
 
 function truncate(str) {
@@ -87,32 +85,24 @@ function truncate(str) {
   }
 }
 
-function isValidPassword(str) {
-  let passwordStr = ''
-  const strU = str.toUpperCase();
-  const strL = str.toLowerCase();
-  const nonAlpha = '!@#$%^&*()_+-=[]{}|;:,.<>?`';
-  const digits = '0123456789';
-  
-   if((str === strU || str === strL) || str.includes(" ")){
-     return false;
-     } else for(let char of str){
-     if(digits.includes(char) && nonAlpha.includes(char)){
-      passwordStr += char;
-      }
-     return true
-   }
+function isVaidPassword(str){
+  return containsDigit(str) &&
+    containsLowerCase(str) &&
+    containsUpperCase(str) &&
+    containsNonAlphanumeric(str) &&
+    !containsSpace(str)
 }
+   
 
-function onlyPunchy(str) {
-  let puncArr = [];
-  return (str += '!').slice(0, (str.indexOf('!') + 1));
-    
-    } for(let title of str){
-      if(title.length < 15){
-        puncArr.push(title);
+function onlyPunchy(arr){
+  resultsArr = []
+  for (let title of arr){
+  let newStr = exclaim(title)
+    if(!isLong(newStr)){
+      resultsArr.push(newStr)
+    }
   }
-  return puncArr;
+  return resultsArr
 }
 
 
